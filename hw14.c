@@ -5,7 +5,13 @@
 
 static void sighandler(int signo) {
   if(signo == SIGINT) {
-    printf("\nProgram exited due to SIGINT.\n");
+    int fd = open("log.txt", O_WRONLY | O_CREAT | O_APPEND, 0644);
+    
+    char msg[50];
+    strncpy(msg, "Program exited due to SIGINT.");
+    write(fd, msg, sizeof(msg));
+    
+    close(fd);
     exit(0);
   }
   else if(signo == SIGUSR1) {
