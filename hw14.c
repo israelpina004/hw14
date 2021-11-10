@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
+#include <fcntl.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <errno.h>
 
 static void sighandler(int signo) {
   if(signo == SIGINT) {
